@@ -5,6 +5,7 @@ import com.xuegao.stream1.river.River;
 import com.xuegao.stream1.sink.SinkChain;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -315,6 +316,13 @@ public class AbstractRiverPipeline<I, O> extends Pipeline<I, O> implements River
 
     @Override
     public <R, A> R collect(Collector<? super O, A, R> collector) {
+        try {
+            System.out.println("collect(Collector<? super O, A, R> collector) { begin");
+            TimeUnit.SECONDS.sleep(5);
+            System.out.println("collect(Collector<? super O, A, R> collector) {  end");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         PipelineStage<O, O> stage = new PipelineStage<O, O>(this) {
             private A state;
 

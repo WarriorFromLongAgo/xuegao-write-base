@@ -40,6 +40,7 @@ public interface River<E> {
      */
     @SafeVarargs
     static <T> River<T> of(T... t) {
+        System.out.println("-----of");
         return RiverGenerator.create(t);
     }
 

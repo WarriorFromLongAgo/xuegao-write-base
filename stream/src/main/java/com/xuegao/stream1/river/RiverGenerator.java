@@ -18,6 +18,7 @@ final class RiverGenerator {
 
     @SafeVarargs
     public static <E> River<E> create(E... e) {
+        System.out.println("-----create(E... e) {");
         Spliterator<E> spliterator = Arrays.spliterator(e);
         return create(spliterator);
     }
@@ -28,6 +29,7 @@ final class RiverGenerator {
     }
 
     private static <E> River<E> create(Spliterator<E> spliterator) {
+        System.out.println("-----create(Spliterator<E> spliterator) {");
         PipelineStage<E, E> head = new PipelineStage<E, E>(spliterator) {
             @Override
             public SinkChain<E, E> wrapSink(SinkChain<E, ?> sink) {
